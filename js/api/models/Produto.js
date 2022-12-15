@@ -55,4 +55,4 @@ export class Produto {
         this._quantidade = novoQuantidade
     }
 
-} // fim da class Pessoa
+} // fim da class Produto
