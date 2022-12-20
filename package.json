@@ -1,0 +1,18 @@
+{
+  "name": "sales-controller-main",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "nodemon": "^2.0.20",
+    "sequelize": "^6.27.0",
+    "sqlite3": "^5.1.4"
+  }
+}

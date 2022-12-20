@@ -1,0 +1,48 @@
+<%- include ('./partials/header.ejs') %> 
+<%- include ('./partials/navbar.ejs') %> 
+
+<div class="container">
+    <hr>
+    <h2>Vendas</h2>
+    <a class="btn btn-success" href="./venda/criar">Nova venda</a>
+    <hr>
+
+    <table class="table table-bordered">
+        <thead class="thead-light">
+            <tr>
+                <th>#</th>
+                <th>Quantidade de produtos</th>
+                <th>Valor da venda</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+                <% vendas.forEach(venda => { %> 
+                    <tr>
+                        <td><%= venda.id %></td>
+                        <td><%= venda.quantidadeProdutos %></td>
+                        <td><%= venda.totalVenda %></td>
+                        <th>
+                            <a href="/venda/editar/<%= venda.id %>"  class="btn btn-warning"> Editar</a>
+                            <form method="POST" action="/venda/delete/<%= venda.id %>" style="display: inline;" onsubmit="confirmDelete(event,this)">
+                                <input type="hidden" name="id" value="<%= venda.id %> ">
+                                <button class="btn btn-danger">Remover</button>
+                            </form>
+                        </th>
+                    </tr>   
+                  <% }) %> 
+
+        </tbody>
+    </table>
+</div>
+
+<script>
+    function confirmDelete(event,form){
+        event.preventDefault();
+        var  decision = confirm("Você deseja remover essa venda? ")
+        if (decision){
+            form.submit();
+        }
+    }
+    
+</script>

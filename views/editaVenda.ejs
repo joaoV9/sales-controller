@@ -1,0 +1,74 @@
+<%- include ('./partials/header.ejs') %> 
+<%- include ('./partials/navbar.ejs') %> 
+
+<div class="container">
+    <hr>
+    <div class="card">
+        <div class="card-header">
+            <h2 >Editar Venda</h2>
+        </div>
+        <div class="card-body">
+            <form action="/venda/<%= venda.id %>/editar" method="POST"> 
+                    <input type="hidden" value="<%= venda.id %>" name="id">
+                    <label class="label label-default font-weight-bold">Nome</label>
+                    <input class="form-control" type="text" name="nome" placeholder="Nome do produto">
+
+                    <label class="label label-default font-weight-bold">Preço</label>
+                    <input class="form-control" type="number" name="preco" placeholder="Preço">
+
+                    <label class="label label-default font-weight-bold">Quantidade</label>
+                    <input class="form-control" type="number" name="quantidade" placeholder="Quantidade">
+                    
+                    <input id="finalizado" class="form-control" type="hidden" name="finalizado"><br>
+
+                    <input type="submit"  class=" btn btn-success" name="vote" value="salvar">
+                    <input type="submit"  class=" btn btn-primary" name="vote" value="adicionar produto">
+
+                    <br>
+                    <br>
+                <table class="table table-bordered">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>#</th>
+                            <th>Nome</th>
+                            <th>Preço</th>
+                            <th>Quantidade</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            <% venda.produtos.forEach(produto => { %> 
+                                <tr>
+                                    <td><%= produto.id %></td>
+                                    <td><%= produto.nome %></td>
+                                    <td><%= produto.preco %></td>
+                                    <td><%= produto.quantidade %></td> 
+                                    <th>
+                                        <form method="POST" action="/venda/<%= venda.id %>/editar" style="display: inline;" onsubmit="confirmDelete(event,this)">
+                                            <input type="submit"  class="btn btn-danger" name="vote" value="remover produto">
+                                            <input type="hidden" name="produtoId" value="<%= produto.id %>">
+                                        </form>
+                                    </th> 
+                                </tr>   
+                            <% }) %> 
+
+                    </tbody>
+                </table>
+
+            
+            </form>
+        </div>
+    </div>
+    
+</div>
+
+<script>
+    function confirmDelete(event,form){
+        event.preventDefault();
+        var  decision = confirm("Deseja remover este produto? ")
+        if (decision){
+            form.submit();
+        }
+    }
+    
+</script>

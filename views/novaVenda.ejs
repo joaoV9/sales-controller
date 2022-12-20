@@ -1,0 +1,55 @@
+<%- include ('./partials/header.ejs') %> 
+<%- include ('./partials/navbar.ejs') %> 
+
+<div class="container">
+    <hr>
+    <div class="card">
+        <div class="card-header">
+            <h2 >Nova Venda</h2>
+        </div>
+        <div class="card-body">
+            <form action="/venda/criar" method="POST"> 
+                <label class="label label-default font-weight-bold">Nome</label>
+                    <input class="form-control" type="text" name="nome" placeholder="Nome do produto">
+
+                    <label class="label label-default font-weight-bold">Preço</label>
+                    <input class="form-control" type="number" name="preco" placeholder="Preço">
+
+                    <label class="label label-default font-weight-bold">Quantidade</label>
+                    <input class="form-control" type="number" name="quantidade" placeholder="Quantidade">
+                    
+                    <input id="finalizado" class="form-control" type="hidden" name="finalizado"><br>
+
+                    <input type="submit"  class=" btn btn-success" name="vote" value="criar">
+                    <input type="submit"  class=" btn btn-primary" name="vote" value="adicionar produto">
+
+                    <br>
+                    <br>
+                <table class="table table-bordered">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>#</th>
+                            <th>Descrição</th>
+                            <th>Quantidade de produtos</th>
+                            <th>Valor da venda</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            <% produtos.forEach(produto => { %> 
+                                <tr>
+                                    <td><%= produto.id %></td>
+                                    <td><%= produto.nome %></td>
+                                    <td><%= produto.preco %></td>
+                                    <td><%= produto.quantidade %></td>  
+                                </tr>   
+                            <% }) %> 
+
+                    </tbody>
+                </table>
+
+            
+            </form>
+        </div>
+    </div>
+    
+</div>
